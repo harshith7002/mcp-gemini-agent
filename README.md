@@ -3,6 +3,7 @@
 A production-ready AI agent that uses a **Model Context Protocol (MCP)**-inspired architecture to retrieve real-world data and synthesize intelligent answers via **Google Gemini**.
 
 Built with **FastAPI** · Deployed on **Google Cloud Run**
+DEPLOYED LINK: https://mcp-agent-430885511377.us-central1.run.app/
 
 ---
 
@@ -247,7 +248,7 @@ gcloud artifacts repositories delete $REPO --location=$REGION
 
 | Variable | Required | Description |
 |---|---|---|
-| `GOOGLE_API_KEY` | ✅ | Google AI Studio or Vertex AI API key |
+| `GOOGLE_API_KEY` | Google AI Studio or Vertex AI API key |
 | `PORT` | No | Server port (Cloud Run sets this to `8080` automatically) |
 
 ---
