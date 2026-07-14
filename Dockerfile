@@ -1,4 +1,4 @@
-# ── Stage 1: install dependencies ────────────────────────────────────────────
+# Stage 1: install dependencies 
 FROM python:3.11-slim AS builder
 
 WORKDIR /build
@@ -9,7 +9,7 @@ RUN pip install --upgrade pip \
  && pip install --no-cache-dir --prefix=/build/deps -r requirements.txt
 
 
-# ── Stage 2: lean runtime image ───────────────────────────────────────────────
+# Stage 2: lean runtime image
 FROM python:3.11-slim
 
 # Run as non-root user — security best practice
