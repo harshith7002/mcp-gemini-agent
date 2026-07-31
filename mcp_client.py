@@ -14,13 +14,13 @@ Tools exposed:
 import httpx
 from typing import Any
 
-# ── Constants ──────────────────────────────────────────────────────────────────
+# Constants
 WIKIPEDIA_SEARCH_API = "https://en.wikipedia.org/w/api.php"
 WIKIPEDIA_SUMMARY_API = "https://en.wikipedia.org/api/rest_v1/page/summary/{title}"
 HTTP_TIMEOUT = 10.0  # seconds
 
 
-# ── Tool 1: Wikipedia live search ─────────────────────────────────────────────
+# Tool 1: Wikipedia live search
 async def wikipedia_search(query: str) -> dict[str, Any]:
     """
     Fetches a structured Wikipedia summary for the given search query.
@@ -79,7 +79,7 @@ async def wikipedia_search(query: str) -> dict[str, Any]:
     }
 
 
-# ── Tool 2: Curated offline fact store ────────────────────────────────────────
+# Tool 2: Curated offline fact store
 # Add entries here to grow the local knowledge base with zero latency.
 _FACT_STORE: dict[str, dict[str, Any]] = {
     "python": {
@@ -131,7 +131,7 @@ def get_topic_facts(topic: str) -> dict[str, Any]:
     }
 
 
-# ── MCP dispatcher — the only function agent.py imports ───────────────────────
+# MCP dispatcher — the only function agent.py imports
 async def call_tool(tool_name: str, query: str) -> dict[str, Any]:
     """
     Central tool dispatcher. The agent always calls this; it never imports
