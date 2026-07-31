@@ -1,13 +1,4 @@
-"""
-main.py — FastAPI application entry point.
 
-Routes:
-  GET  /        → health check
-  POST /agent   → main agent endpoint
-
-This module handles only HTTP concerns: request validation, response shaping,
-and error mapping. All intelligence lives in agent.py and mcp_client.py.
-"""
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, field_validator
@@ -15,7 +6,7 @@ from typing import Any
 
 from agent import run_agent
 
-# ── App setup ─────────────────────────────────────────────────────────────────
+# App setup
 app = FastAPI(
     title="MCP-Style Gemini Agent",
     description=(
@@ -27,7 +18,7 @@ app = FastAPI(
 )
 
 
-# ── Schemas ───────────────────────────────────────────────────────────────────
+# Schemas
 class AgentRequest(BaseModel):
     input: str
 
@@ -46,7 +37,7 @@ class AgentResponse(BaseModel):
     response: str
 
 
-# ── Routes ────────────────────────────────────────────────────────────────────
+# Routes
 @app.get("/", summary="Health check")
 def health() -> dict[str, str]:
     """Confirms the service is running. Used by Cloud Run health probes."""
