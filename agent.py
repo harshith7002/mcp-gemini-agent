@@ -1,12 +1,4 @@
-"""
-agent.py — Reasoning and orchestration layer.
 
-Responsibility: understand intent, decide which MCP tool to call,
-combine tool data with user input, and generate a final answer via Gemini.
-
-This module knows nothing about HTTP — that's main.py's job.
-This module knows nothing about external APIs — that's mcp_client.py's job.
-"""
 
 import os
 import json
@@ -17,7 +9,7 @@ import google.generativeai as genai
 
 from mcp_client import call_tool
 
-# ── Gemini setup ──────────────────────────────────────────────────────────────
+
 _model: genai.GenerativeModel | None = None
 
 
@@ -38,7 +30,7 @@ def _get_model() -> genai.GenerativeModel:
     return _model
 
 
-# ── Step 1: Tool selection ─────────────────────────────────────────────────────
+# Step 1: Tool selection 
 _TOOL_DECISION_PROMPT = """
 You are a routing assistant. Your only job is to decide which tool to call.
 
@@ -85,7 +77,7 @@ async def _decide_tool(model: genai.GenerativeModel, user_input: str) -> dict[st
         return {"tool": "none", "query": ""}
 
 
-# ── Step 2: Final answer generation ───────────────────────────────────────────
+# Step 2: Final answer generation
 _ANSWER_PROMPT = """
 You are a knowledgeable and concise assistant. Answer the user's question clearly.
 
@@ -127,7 +119,7 @@ def _build_answer_prompt(user_input: str, tool_data: dict[str, Any] | None) -> s
     return _ANSWER_PROMPT.format(user_input=user_input, tool_section=tool_section)
 
 
-# ── Public agent entry point ───────────────────────────────────────────────────
+# Public agent entry point
 async def run_agent(user_input: str) -> dict[str, Any]:
     """
     Full agent pipeline:
