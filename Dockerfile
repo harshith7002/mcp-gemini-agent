@@ -16,21 +16,17 @@ FROM python:3.11-slim
 RUN useradd --create-home appuser
 WORKDIR /home/appuser
 
-# Copy installed packages from builder stage
 COPY --from=builder /build/deps /usr/local
 
-# Copy only the application source (no dev files, no tests)
+
 COPY main.py agent.py mcp_client.py ./
 
 USER appuser
 
-# Cloud Run injects PORT=8080 automatically; we honour it explicitly
+# Cloud Run injects PORT=8080 automatically
 ENV PORT=8080
 EXPOSE 8080
 
-# GOOGLE_API_KEY must be set at runtime via:
-#   - gcloud run deploy --set-env-vars
-#   - Cloud Run secret references (recommended for production)
-# Never bake API keys into the image.
+
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--workers", "2"]
