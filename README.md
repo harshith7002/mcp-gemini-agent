@@ -1,6 +1,6 @@
 # MCP-Style Gemini Agent
 
-A production-ready AI agent that uses a **Model Context Protocol (MCP)**-inspired architecture to retrieve real-world data and synthesize intelligent answers via **Google Gemini**.
+A small agent that uses a **Model Context Protocol (MCP)**-inspired architecture: Gemini decides which tool to call, the tool fetches real data, and Gemini writes the final answer from that data.
 
 Built with **FastAPI** · Deployed on **Google Cloud Run**
 DEPLOYED LINK: https://mcp-agent-430885511377.us-central1.run.app/
@@ -75,8 +75,8 @@ mcp-agent/
 
 ```bash
 # 1. Clone the repo
-git clone <your-repo-url>
-cd mcp-agent
+git clone https://github.com/harshith7002/mcp-gemini-agent.git
+cd mcp-gemini-agent
 
 # 2. Create and activate a virtual environment
 python -m venv .venv
